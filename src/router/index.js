@@ -27,6 +27,11 @@ const router = createRouter({
       name: "datenschutz",
       component: () => import("../views/DataProtectionView.vue"),
     },
+    {
+      path: "/success",
+      name: "success",
+      component: () => import("../views/SuccessView.vue"),
+    },
   ],
 });
 
