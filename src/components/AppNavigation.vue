@@ -1,9 +1,5 @@
 <script setup>
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel
-} from "@headlessui/vue";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 const navigation = [
@@ -17,7 +13,6 @@ const navigation = [
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
-
           <div class="flex-shrink-0">
             <img
               class="h-8 w-8"

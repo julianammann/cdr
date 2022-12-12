@@ -10,7 +10,7 @@ import AppFooter from "@/components/AppFooter.vue";
       <Navigation />
     </header>
     <main class="relative bg-white shadow h-screen overflow-auto">
-      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-20">
+      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 my-20">
         <!-- Replace with your content -->
         <div class="px-4 sm:px-0">
           <RouterView />
