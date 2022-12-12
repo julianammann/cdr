@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
+  { name: "Kleiderspende", href: "/clothing-donation" },
 ];
 </script>
 

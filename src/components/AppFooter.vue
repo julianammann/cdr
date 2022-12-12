@@ -2,7 +2,6 @@
 const year = new Date().getFullYear();
 
 const navigation = [
-  { name: "About", href: "/about" },
   { name: "Impressum", href: "/imprint" },
   { name: "Datenschutz", href: "/data-protection" },
 ];
