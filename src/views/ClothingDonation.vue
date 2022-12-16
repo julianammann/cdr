@@ -17,15 +17,15 @@
             value="onSiteDelivery"
             name="list-radio"
             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-            v-model="form.checked"
-            @change="form.changeChecked('onSiteDelivery')"
-            :checked="form.checked === 'onSiteDelivery'"
+            v-model="store.checked"
+            @change="store.changeChecked('onSiteDelivery')"
+            :checked="store.checked === 'onSiteDelivery'"
           />
 
           <label
             for="horizontal-list-radio-license"
             class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
-            >Vorort abgabe</label
+            >Übergabe an der Geschäftsstelle</label
           >
         </div>
       </li>
@@ -39,9 +39,9 @@
             value="pickUpService"
             name="list-radio"
             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-            v-model="form.checked"
-            @change="form.changeChecked('pickUpService')"
-            :checked="form.checked === 'pickUpService'"
+            v-model="store.checked"
+            @change="store.changeChecked('pickUpService')"
+            :checked="store.checked === 'pickUpService'"
           />
           <label
             for="horizontal-list-radio-id"
@@ -52,14 +52,14 @@
       </li>
     </ul>
 
-    <div v-if="form.checked === 'onSiteDelivery'">
+    <div v-if="store.checked === 'onSiteDelivery'">
       <FormSpacer />
-      <OnSiteDelivery :form="form" />
+      <OnSiteDelivery />
     </div>
     <div v-else>
       <FormSpacer />
 
-      <PersonalInformation />
+      <PickUpService />
 
       <FormSpacer />
     </div>
@@ -69,16 +69,16 @@
 
 <script>
 import { useFormStore } from "@/stores/form";
-import PersonalInformation from "@/components/PersonalInformation.vue";
+import PickUpService from "@/components/PickUpService.vue";
 import FormSpacer from "@/components/FormSpacer.vue";
 import OnSiteDelivery from "@/components/OnSiteDelivery.vue";
 
 export default {
   setup() {
-    const form = useFormStore();
-    return { form };
+    const store = useFormStore();
+    return { store };
   },
   name: "ClothingDonation",
-  components: { OnSiteDelivery, FormSpacer, PersonalInformation },
+  components: { OnSiteDelivery, FormSpacer, PickUpService },
 };
 </script>
