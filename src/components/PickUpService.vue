@@ -22,7 +22,7 @@
                     for="first-name"
                     class="block text-sm font-medium text-gray-700"
                     :class="v$.firstName.$error ? 'text-red-500' : ''"
-                    >Vorname *</label
+                  >Vorname *</label
                   >
                   <input
                     type="text"
@@ -42,7 +42,7 @@
                     for="last-name"
                     class="block text-sm font-medium text-gray-700"
                     :class="v$.lastName.$error ? 'text-red-500' : ''"
-                    >Nachname *</label
+                  >Nachname *</label
                   >
                   <input
                     type="text"
@@ -62,7 +62,7 @@
                     for="email-address"
                     class="block text-sm font-medium text-gray-700"
                     :class="v$.email.$error ? 'text-red-500' : ''"
-                    >E-Mail *</label
+                  >E-Mail *</label
                   >
                   <input
                     type="text"
@@ -90,7 +90,7 @@
                     for="street-address"
                     class="block text-sm font-medium text-gray-700"
                     :class="v$.street.$error ? 'text-red-500' : ''"
-                    >Straße *</label
+                  >Straße *</label
                   >
                   <input
                     type="text"
@@ -110,7 +110,7 @@
                     for="postal-code"
                     class="block text-sm font-medium text-gray-700"
                     :class="v$.zip.$error ? 'text-red-500' : ''"
-                    >Postleitzahl *</label
+                  >Postleitzahl *</label
                   >
                   <input
                     type="text"
@@ -129,7 +129,7 @@
                     for="city"
                     class="block text-sm font-medium text-gray-700"
                     :class="v$.city.$error ? 'text-red-500' : ''"
-                    >Stadt *</label
+                  >Stadt *</label
                   >
                   <input
                     type="text"
@@ -206,7 +206,7 @@ export default {
       city: this.store.city,
       zip: this.store.zip,
       wCountries: this.store.worldCountries,
-      countries: this.store.countries,
+      countries: this.store.countries
     };
   },
   methods: {
@@ -215,24 +215,18 @@ export default {
       // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
       if (!isFormCorrect) return;
 
-      if (this.checkIfInRange()) {
-        this.store.$patch({
-          country: this.country,
-          clothSelection: this.clothSelection,
-          pickUpCountry: this.pickUpCountry,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          street: this.street,
-          city: this.city,
-          zip: this.zip,
-        });
-        this.$router.push("/success");
-      }
-    },
-    checkIfInRange() {
-      const homeZip = "88279";
-      return homeZip.substring(0, 2) === this.zip.substring(0, 2);
+      this.store.$patch({
+        country: this.country,
+        clothSelection: this.clothSelection,
+        pickUpCountry: this.pickUpCountry,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        street: this.street,
+        city: this.city,
+        zip: this.zip
+      });
+      this.$router.push("/success");
     },
   },
   validations() {
@@ -244,10 +238,10 @@ export default {
       street: { required },
       city: { required },
       country: { required, valueNotZero },
-      pickUpCountry: { required, valueNotZero },
+      pickUpCountry: { required, valueNotZero }
     };
   },
   name: "PickUpService",
-  components: { ErrorDisplay, Multiselect, CountrySelect },
+  components: { ErrorDisplay, Multiselect, CountrySelect }
 };
 </script>
