@@ -16,9 +16,9 @@
       <form @submit.prevent>
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-            <ClothingDetails v-model="clothDescription" />
+            <Multiselect mode="tags" v-model="clothSelection" :options="clothes" :close-on-select="false" :create-option="true"/>
             <CountrySelect
-              v-model="this.country"
+              v-model="country"
               :countries="store.countries"
               :crisis="true"
             />
@@ -39,11 +39,11 @@
 
 <script>
 import { useFormStore } from "@/stores/form";
-import ClothingDetails from "@/components/ClothingDetails.vue";
 import CountrySelect from "@/components/CountrySelect.vue";
+import Multiselect from "@vueform/multiselect";
 
 export default {
-  components: { CountrySelect, ClothingDetails },
+  components: { Multiselect, CountrySelect },
   setup() {
     const store = useFormStore();
     return { store };
@@ -51,7 +51,8 @@ export default {
   name: "OnSiteDelivery",
   data() {
     return {
-      clothDescription: this.store.clothDescription,
+      clothSelection: this.store.clothSelection,
+      clothes: this.store.clothes,
       country: this.store.country,
     };
   },
@@ -59,7 +60,7 @@ export default {
     routeToSuccess() {
       this.store.$patch({
         country: this.country,
-        clothDescription: this.clothDescription,
+        clothSelection: this.clothSelection,
       });
       this.$router.push("/success");
     },
@@ -67,4 +68,3 @@ export default {
 };
 </script>
 
-<style scoped></style>

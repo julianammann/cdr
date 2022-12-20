@@ -21,7 +21,7 @@
                   <label
                     for="first-name"
                     class="block text-sm font-medium text-gray-700"
-                    >Vorname *</label
+                  >Vorname *</label
                   >
                   <input
                     type="text"
@@ -30,7 +30,7 @@
                     autocomplete="given-name"
                     required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    v-model="this.firstName"
+                    v-model="firstName"
                   />
                 </div>
 
@@ -38,7 +38,7 @@
                   <label
                     for="last-name"
                     class="block text-sm font-medium text-gray-700"
-                    >Nachname</label
+                  >Nachname</label
                   >
                   <input
                     type="text"
@@ -47,7 +47,7 @@
                     autocomplete="family-name"
                     required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    v-model="this.lastName"
+                    v-model="lastName"
                   />
                 </div>
 
@@ -55,7 +55,7 @@
                   <label
                     for="email-address"
                     class="block text-sm font-medium text-gray-700"
-                    >E-Mail</label
+                  >E-Mail</label
                   >
                   <input
                     type="text"
@@ -64,13 +64,13 @@
                     autocomplete="email"
                     required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    v-model="this.email"
+                    v-model="email"
                   />
                 </div>
 
                 <div class="col-span-6 sm:col-span-6">
                   <CountrySelect
-                    v-model="this.pickUpCountry"
+                    v-model="pickUpCountry"
                     :countries="wCountries"
                   />
                 </div>
@@ -79,7 +79,7 @@
                   <label
                     for="street-address"
                     class="block text-sm font-medium text-gray-700"
-                    >Straße</label
+                  >Straße</label
                   >
                   <input
                     type="text"
@@ -88,7 +88,7 @@
                     autocomplete="street-address"
                     required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    v-model="this.street"
+                    v-model="street"
                   />
                 </div>
 
@@ -96,7 +96,7 @@
                   <label
                     for="city"
                     class="block text-sm font-medium text-gray-700"
-                    >Stadt</label
+                  >Stadt</label
                   >
                   <input
                     type="text"
@@ -105,7 +105,7 @@
                     required
                     autocomplete="address-level2"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    v-model="this.city"
+                    v-model="city"
                   />
                 </div>
 
@@ -113,7 +113,7 @@
                   <label
                     for="postal-code"
                     class="block text-sm font-medium text-gray-700"
-                    >Postleitzahl</label
+                  >Postleitzahl</label
                   >
                   <input
                     type="text"
@@ -122,18 +122,18 @@
                     autocomplete="postal-code"
                     required
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    v-model="this.zip"
+                    v-model="zip"
                   />
                 </div>
 
                 <div class="col-span-6 sm:col-span-6">
-                  <ClothingDetails v-model="this.clothDescription" />
+                  <Multiselect mode="tags" v-model="clothSelection" :options="clothes" :close-on-select="false" :create-option="true"/>
                 </div>
                 <div class="col-span-6 sm:col-span-6">
                   <CountrySelect
                     :crisis="true"
                     :countries="countries"
-                    v-model="this.country"
+                    v-model="country"
                   />
                 </div>
               </div>
@@ -143,7 +143,7 @@
               <button
                 type="submit"
                 class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                @click="this.routeToSuccess()"
+                @click="routeToSuccess()"
               >
                 Save
               </button>
@@ -159,8 +159,8 @@
 import { useFormStore } from "@/stores/form";
 import { useVuelidate } from "@vuelidate/core";
 import CountrySelect from "@/components/CountrySelect.vue";
-import ClothingDetails from "@/components/ClothingDetails.vue";
 import { required, email } from "@vuelidate/validators";
+import Multiselect from "@vueform/multiselect";
 
 export default {
   setup() {
@@ -169,7 +169,8 @@ export default {
   },
   data() {
     return {
-      clothDescription: this.store.clothDescription,
+      clothSelection: this.store.clothSelection,
+      clothes: this.store.clothes,
       country: this.store.country,
       pickUpCountry: this.store.pickUpCountry,
       firstName: this.store.firstName,
@@ -179,11 +180,12 @@ export default {
       city: this.store.city,
       zip: this.store.zip,
       wCountries: this.store.worldCountries,
-      countries: this.store.countries,
+      countries: this.store.countries
     };
   },
   methods: {
     async routeToSuccess() {
+      console.log(this.clothSelection);
       const isFormCorrect = await this.v$.$validate();
       // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
       if (!isFormCorrect) return;
@@ -191,14 +193,14 @@ export default {
       if (this.checkIfInRange()) {
         this.store.$patch({
           country: this.country,
-          clothDescription: this.clothDescription,
+          clothSelection: this.clothSelection,
           pickUpCountry: this.pickUpCountry,
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
           street: this.street,
           city: this.city,
-          zip: this.zip,
+          zip: this.zip
         });
         this.$router.push("/success");
       }
@@ -206,7 +208,7 @@ export default {
     checkIfInRange() {
       const homeZip = "88279";
       return homeZip.substring(0, 2) === this.zip.substring(0, 2);
-    },
+    }
   },
   validations() {
     return {
@@ -215,12 +217,12 @@ export default {
       email: { required, email },
       zip: { required },
       street: { required },
-      city: { required },
+      city: { required }
     };
   },
   name: "PickUpService",
-  components: { ClothingDetails, CountrySelect },
+  components: { Multiselect, CountrySelect }
+
 };
 </script>
 
-<style scoped></style>

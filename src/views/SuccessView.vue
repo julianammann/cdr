@@ -6,11 +6,11 @@
           <h3
             class="text-2xl font-bold tracking-tight sm:text-center sm:text-4xl"
           >
-            Vielen Dank für Ihre Spende an das Land: {{ this.getCountryByCode() }}
+            Vielen Dank für Ihre Spende an das Land: {{ getCountryByCode() }}
           </h3>
           <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
             diese umfasst:
-            {{ this.clothDescription }}<br />
+            {{ clothSelection }}<br />
           </p>
         </div>
       </div>
@@ -18,17 +18,18 @@
         <h3
           class="text-2xl font-bold tracking-tight sm:text-center sm:text-4xl"
         >
-          Vielen Dank {{ this.firstName }} {{ this.lastName }} für Ihre Spende
-          an das Land: {{ this.getCountryByCode() }}
+          Vielen Dank {{ firstName }} {{ lastName }} für Ihre Spende an das
+          Land: {{ getCountryByCode() }}
         </h3>
         <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
           diese umfasst:
-          {{ this.clothDescription }}<br />
+          {{ clothSelection }}<br />
           Wir kommen zur folgenden Adresse: <br />
-          {{ this.street }}<br />
-          {{ this.zip }} {{ this.city }}<br />
+          {{ street }}<br />
+          {{ zip }} {{ city }}<br />
 
-          Wir holen die Spende am {{ this.addDays(Date.now(), Math.floor(Math.random() * 5)) }} zwischen 13
+          Wir holen die Spende am
+          {{ addDays(Date.now(), Math.floor(Math.random() * 5)) }} zwischen 13
           und 17 Uhr.
         </p>
       </div>
@@ -47,7 +48,7 @@ export default {
   data() {
     return {
       checked: this.store.checked,
-      clothDescription: this.store.clothDescription,
+      clothSelection: this.store.clothSelection,
       country: this.store.country,
       pickUpCountry: this.store.pickUpCountry,
       firstName: this.store.firstName,
