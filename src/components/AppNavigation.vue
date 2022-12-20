@@ -1,13 +1,3 @@
-<script setup>
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Kleiderspende", href: "/clothing-donation" },
-];
-</script>
-
 <template>
   <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -69,5 +59,15 @@ const navigation = [
     </DisclosurePanel>
   </Disclosure>
 </template>
+
+<script setup>
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
+
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "Kleiderspende", href: "/clothing-donation" },
+];
+</script>
 
 <style scoped></style>

@@ -11,7 +11,7 @@
     <div class="border-t border-gray-200">
       <dl>
         <DataTableItem
-          v-for="item in this.items"
+          v-for="item in items"
           :values="item.values"
           :key="item"
           :title="item.title"

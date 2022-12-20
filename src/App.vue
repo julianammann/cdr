@@ -1,9 +1,3 @@
-<script setup>
-import { RouterView } from "vue-router";
-import Navigation from "@/components/AppNavigation.vue";
-import AppFooter from "@/components/AppFooter.vue";
-</script>
-
 <template>
   <div>
     <header class="fixed top-0 z-50 w-full">
@@ -25,3 +19,9 @@ import AppFooter from "@/components/AppFooter.vue";
 </template>
 
 <style scoped></style>
+
+<script setup>
+import { RouterView } from "vue-router";
+import Navigation from "@/components/AppNavigation.vue";
+import AppFooter from "@/components/AppFooter.vue";
+</script>

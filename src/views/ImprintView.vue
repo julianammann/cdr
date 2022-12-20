@@ -1,3 +1,18 @@
+<template>
+  <data-table :items="items">
+    <template #tableHeading> Impressum </template>
+    <template #tableSubheading>
+      Angaben gem&auml;&szlig; &sect; 5 TMG
+    </template>
+  </data-table>
+  <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+    <p>
+      Quelle:
+      <a href="https://www.e-recht24.de" target="_blank">e-recht24.de</a>
+    </p>
+  </div>
+</template>
+
 <script setup>
 import DataTable from "@/components/DataTable.vue";
 
@@ -19,20 +34,5 @@ const items = {
   },
 };
 </script>
-
-<template>
-  <data-table :items="items">
-    <template #tableHeading> Impressum </template>
-    <template #tableSubheading>
-      Angaben gem&auml;&szlig; &sect; 5 TMG
-    </template>
-  </data-table>
-  <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-    <p>
-      Quelle:
-      <a href="https://www.e-recht24.de" target="_blank">e-recht24.de</a>
-    </p>
-  </div>
-</template>
 
 <style scoped></style>

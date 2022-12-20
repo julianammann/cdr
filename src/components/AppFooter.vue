@@ -1,12 +1,3 @@
-<script setup>
-const year = new Date().getFullYear();
-
-const navigation = [
-  { name: "Impressum", href: "/imprint" },
-  { name: "Datenschutz", href: "/data-protection" },
-];
-</script>
-
 <template>
   <div
     class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800"
@@ -28,5 +19,14 @@ const navigation = [
     </ul>
   </div>
 </template>
+
+<script setup>
+const year = new Date().getFullYear();
+
+const navigation = [
+  { name: "Impressum", href: "/imprint" },
+  { name: "Datenschutz", href: "/data-protection" },
+];
+</script>
 
 <style scoped></style>

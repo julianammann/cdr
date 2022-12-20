@@ -58,9 +58,7 @@
     </div>
     <div v-else>
       <FormSpacer />
-
       <PickUpService />
-
       <FormSpacer />
     </div>
   </div>
