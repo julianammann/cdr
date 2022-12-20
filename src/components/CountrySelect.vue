@@ -9,7 +9,8 @@
     <div class="mt-1">
       <select
         id="countries"
-        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        :class="v.$error ? 'border-red-500 text-red-500' : ''"
         @input="$emit('update:modelValue', $event.target.value)"
       >
         <option value="0">Wählen Sie ein Land</option>
@@ -23,16 +24,24 @@
       </select>
     </div>
   </div>
+  <ErrorDisplay field="Land" :v="v" />
 </template>
 
 <script>
+import ErrorDisplay from "@/components/ErrorDisplay.vue";
+
 export default {
   name: "CountrySelect",
+  components: { ErrorDisplay },
   props: {
     countries: Object,
     crisis: {
       type: Boolean,
       default: false,
+    },
+    v: {
+      type: Object,
+      required: true,
     },
   },
 };

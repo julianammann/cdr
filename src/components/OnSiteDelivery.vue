@@ -16,11 +16,18 @@
       <form @submit.prevent>
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-            <Multiselect mode="tags" v-model="clothSelection" :options="clothes" :close-on-select="false" :create-option="true"/>
+            <Multiselect
+              mode="tags"
+              v-model="clothSelection"
+              :options="clothes"
+              :close-on-select="false"
+              :create-option="true"
+            />
             <CountrySelect
               v-model="country"
               :countries="store.countries"
               :crisis="true"
+              :v="v$.country"
             />
           </div>
           <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
@@ -41,12 +48,15 @@
 import { useFormStore } from "@/stores/form";
 import CountrySelect from "@/components/CountrySelect.vue";
 import Multiselect from "@vueform/multiselect";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+import { valueNotZero } from "@/validation";
 
 export default {
   components: { Multiselect, CountrySelect },
   setup() {
     const store = useFormStore();
-    return { store };
+    return { store, v$: useVuelidate() };
   },
   name: "OnSiteDelivery",
   data() {
@@ -57,7 +67,11 @@ export default {
     };
   },
   methods: {
-    routeToSuccess() {
+    async routeToSuccess() {
+      const isFormCorrect = await this.v$.$validate();
+      // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
+      if (!isFormCorrect) return;
+
       this.store.$patch({
         country: this.country,
         clothSelection: this.clothSelection,
@@ -65,6 +79,10 @@ export default {
       this.$router.push("/success");
     },
   },
+  validations() {
+    return {
+      country: { required, valueNotZero },
+    };
+  },
 };
 </script>
-
