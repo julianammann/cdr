@@ -10,7 +10,10 @@
           </h3>
           <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
             diese umfasst:
-            {{ clothSelection }}<br />
+            <span :key="index" v-for="(cloth, index) in clothSelection">{{
+              cloth
+            }}</span>
+            <br />
           </p>
         </div>
       </div>
@@ -23,7 +26,10 @@
         </h3>
         <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
           diese umfasst:
-          {{ clothSelection }}<br />
+          <span :key="index" v-for="(cloth, index) in clothSelection">{{
+            cloth
+          }}</span>
+          <br />
           Wir kommen zur folgenden Adresse: <br />
           {{ street }}<br />
           {{ zip }} {{ city }}<br />
