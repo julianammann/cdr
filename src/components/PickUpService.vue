@@ -18,63 +18,30 @@
             <div class="bg-white px-4 py-5 sm:p-6">
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
-                  <label
-                    for="first-name"
-                    class="block text-sm font-medium text-gray-700"
-                    :class="v$.firstName.$error ? 'text-red-500' : ''"
-                  >Vorname *</label
-                  >
-                  <input
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autocomplete="given-name"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    :class="v$.firstName.$error ? 'border-red-500' : ''"
+                  <LabelInput
+                    name="Vorname"
+                    :v="v$.firstName"
+                    input-type="text"
                     v-model="firstName"
-                    @blur="v$.firstName.$touch"
                   />
-                  <ErrorDisplay field="Vorname" :v="v$.firstName" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
-                  <label
-                    for="last-name"
-                    class="block text-sm font-medium text-gray-700"
-                    :class="v$.lastName.$error ? 'text-red-500' : ''"
-                  >Nachname *</label
-                  >
-                  <input
-                    type="text"
-                    name="last-name"
-                    id="last-name"
-                    autocomplete="family-name"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    :class="v$.lastName.$error ? 'border-red-500' : ''"
+                  <LabelInput
+                    name="Nachname"
+                    :v="v$.lastName"
+                    input-type="text"
                     v-model="lastName"
-                    @blur="v$.lastName.$touch"
                   />
-                  <ErrorDisplay field="Nachname" :v="v$.lastName" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-6">
-                  <label
-                    for="email-address"
-                    class="block text-sm font-medium text-gray-700"
-                    :class="v$.email.$error ? 'text-red-500' : ''"
-                  >E-Mail *</label
-                  >
-                  <input
-                    type="text"
-                    name="email-address"
-                    id="email-address"
-                    autocomplete="email"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    :class="v$.email.$error ? 'border-red-500' : ''"
-                    @blur="v$.email.$touch"
+                  <LabelInput
+                    name="E-Mail"
+                    :v="v$.email"
+                    input-type="email"
                     v-model="email"
                   />
-                  <ErrorDisplay field="E-Mail" :v="v$.email" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-6">
@@ -86,71 +53,50 @@
                 </div>
 
                 <div class="col-span-6">
-                  <label
-                    for="street-address"
-                    class="block text-sm font-medium text-gray-700"
-                    :class="v$.street.$error ? 'text-red-500' : ''"
-                  >Straße *</label
-                  >
-                  <input
-                    type="text"
-                    name="street-address"
-                    id="street-address"
-                    autocomplete="street-address"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    :class="v$.street.$error ? 'border-red-500' : ''"
-                    @blur="v$.street.$touch"
+                  <LabelInput
+                    name="Straße"
+                    :v="v$.street"
+                    input-type="text"
                     v-model="street"
                   />
-                  <ErrorDisplay field="Straße" :v="v$.street" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-                  <label
-                    for="postal-code"
-                    class="block text-sm font-medium text-gray-700"
-                    :class="v$.zip.$error ? 'text-red-500' : ''"
-                  >Postleitzahl *</label
-                  >
-                  <input
-                    type="text"
-                    name="postal-code"
-                    id="postal-code"
-                    autocomplete="postal-code"
-                    :class="v$.zip.$error ? 'border-red-500' : ''"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  <LabelInput
+                    name="Postleitzahl"
+                    :v="v$.zip"
+                    input-type="text"
                     v-model="zip"
                   />
-                  <ErrorDisplay field="Postleitzahl" :v="v$.zip" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-                  <label
-                    for="city"
-                    class="block text-sm font-medium text-gray-700"
-                    :class="v$.city.$error ? 'text-red-500' : ''"
-                  >Stadt *</label
-                  >
-                  <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    autocomplete="address-level2"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    :class="v$.city.$error ? 'border-red-500' : ''"
+                  <LabelInput
+                    name="Stadt"
+                    :v="v$.city"
+                    input-type="text"
                     v-model="city"
                   />
-                  <ErrorDisplay field="Stadt" :v="v$.city" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-6">
-                  <Multiselect
-                    mode="tags"
+                  <vSelect
                     v-model="clothSelection"
+                    multiple
+                    label="label"
                     :options="clothes"
-                    :close-on-select="false"
-                    :create-option="true"
-                  />
+                    @click="v$.clothSelection.$touch()"
+                    :style="vSelectStyle"
+                  >
+                    <template #header>
+                      <div
+                        class="block text-sm font-medium text-gray-700"
+                        :class="v$.clothSelection.$error ? 'text-red-500' : ''"
+                      >
+                        Wählen Sie die Kleidungsart *
+                      </div>
+                    </template>
+                  </vSelect>
                 </div>
                 <div class="col-span-6 sm:col-span-6">
                   <CountrySelect
@@ -184,9 +130,9 @@ import { useFormStore } from "@/stores/form";
 import { useVuelidate } from "@vuelidate/core";
 import CountrySelect from "@/components/CountrySelect.vue";
 import { required, email } from "@vuelidate/validators";
-import Multiselect from "@vueform/multiselect";
-import ErrorDisplay from "@/components/ErrorDisplay.vue";
-import { checkIfInRange, valueNotZero } from "@/validation";
+import { checkIfInRange, valueNotZero } from "@/helpers/validation";
+import LabelInput from "@/components/LabelInput.vue";
+import vSelect from "vue-select";
 
 export default {
   setup() {
@@ -195,6 +141,7 @@ export default {
   },
   data() {
     return {
+      isTouched: false,
       clothSelection: this.store.clothSelection,
       clothes: this.store.clothes,
       country: this.store.country,
@@ -206,8 +153,15 @@ export default {
       city: this.store.city,
       zip: this.store.zip,
       wCountries: this.store.worldCountries,
-      countries: this.store.countries
+      countries: this.store.countries,
     };
+  },
+  computed: {
+    vSelectStyle() {
+      return this.v$.clothSelection.$error
+        ? "--vs-border-color: rgb(239 68 68 / 1)"
+        : "--vs-border-color: rgb(209 213 219 / 1);";
+    },
   },
   methods: {
     async routeToSuccess() {
@@ -217,14 +171,14 @@ export default {
 
       this.store.$patch({
         country: this.country,
-        clothSelection: this.clothSelection,
+        clothSelection: this.clothSelection.map((cloth) => cloth.label),
         pickUpCountry: this.pickUpCountry,
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         street: this.street,
         city: this.city,
-        zip: this.zip
+        zip: this.zip,
       });
       this.$router.push("/success");
     },
@@ -238,10 +192,13 @@ export default {
       street: { required },
       city: { required },
       country: { required, valueNotZero },
-      pickUpCountry: { required, valueNotZero }
+      pickUpCountry: { required, valueNotZero },
+      clothSelection: { required },
     };
   },
   name: "PickUpService",
-  components: { ErrorDisplay, Multiselect, CountrySelect }
+  components: { vSelect, LabelInput, CountrySelect },
 };
 </script>
+
+<style scoped></style>

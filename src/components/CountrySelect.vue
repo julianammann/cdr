@@ -34,6 +34,7 @@ export default {
   name: "CountrySelect",
   components: { ErrorDisplay },
   props: {
+    modelValue: String,
     countries: Object,
     crisis: {
       type: Boolean,

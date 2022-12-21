@@ -16,13 +16,23 @@
       <form @submit.prevent>
         <div class="shadow sm:overflow-hidden sm:rounded-md">
           <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-            <Multiselect
-              mode="tags"
+            <vSelect
               v-model="clothSelection"
+              multiple
+              label="label"
               :options="clothes"
-              :close-on-select="false"
-              :create-option="true"
-            />
+              @click="v$.clothSelection.$touch()"
+              :style="vSelectStyle"
+            >
+              <template #header>
+                <div
+                  class="block text-sm font-medium text-gray-700"
+                  :class="v$.clothSelection.$error ? 'text-red-500' : ''"
+                >
+                  Wählen Sie die Kleidungsart *
+                </div>
+              </template>
+            </vSelect>
             <CountrySelect
               v-model="country"
               :countries="store.countries"
@@ -35,7 +45,7 @@
               class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               @click="routeToSuccess"
             >
-              Save
+              Absenden
             </button>
           </div>
         </div>
@@ -45,15 +55,15 @@
 </template>
 
 <script>
+import vSelect from "vue-select";
 import { useFormStore } from "@/stores/form";
 import CountrySelect from "@/components/CountrySelect.vue";
-import Multiselect from "@vueform/multiselect";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { valueNotZero } from "@/validation";
+import { valueNotZero } from "@/helpers/validation";
 
 export default {
-  components: { Multiselect, CountrySelect },
+  components: { vSelect, CountrySelect },
   setup() {
     const store = useFormStore();
     return { store, v$: useVuelidate() };
@@ -66,6 +76,13 @@ export default {
       country: this.store.country,
     };
   },
+  computed: {
+    vSelectStyle() {
+      return this.v$.clothSelection.$error
+        ? "--vs-border-color: rgb(239 68 68 / 1)"
+        : "--vs-border-color: rgb(209 213 219 / 1);";
+    },
+  },
   methods: {
     async routeToSuccess() {
       const isFormCorrect = await this.v$.$validate();
@@ -74,7 +91,7 @@ export default {
 
       this.store.$patch({
         country: this.country,
-        clothSelection: this.clothSelection,
+        clothSelection: this.clothSelection.map((cloth) => cloth.label),
       });
       this.$router.push("/success");
     },
@@ -82,6 +99,7 @@ export default {
   validations() {
     return {
       country: { required, valueNotZero },
+      clothSelection: { required },
     };
   },
 };

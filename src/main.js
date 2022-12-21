@@ -5,7 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/index.css";
-import "@vueform/multiselect/themes/tailwind.css";
+import "vue-select/dist/vue-select.css";
 
 const app = createApp(App);
 

@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useFormStore = defineStore("form", () => {
   const checked = ref("pickUpService");
-  const clothSelection = ref(null);
+  const clothSelection = ref([]);
   const firstName = ref("");
   const lastName = ref("");
   const email = ref("");
