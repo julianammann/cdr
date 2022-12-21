@@ -64,6 +64,10 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 
+/**
+ * navigation initialization
+ * @type {[{name: string, href: string},{name: string, href: string}]}
+ */
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Kleiderspende", href: "/clothing-donation" },

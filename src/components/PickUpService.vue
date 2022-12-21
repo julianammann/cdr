@@ -135,13 +135,31 @@ import LabelInput from "@/components/LabelInput.vue";
 import vSelect from "vue-select";
 
 export default {
+  /**
+   * component name
+   **/
+  name: "PickUpService",
+  /**
+   * used components
+   * vSelect is the mulit select component
+   * LabelInput for form inputs
+   * CountrySelect single select component
+   */
+  components: { vSelect, LabelInput, CountrySelect },
+  /**
+   * setup store and validations
+   * @returns {{store: *, v$: <Validation>}}
+   */
   setup() {
     const store = useFormStore();
     return { store, v$: useVuelidate() };
   },
+  /**
+   * initialize data from the store
+   * @returns {{zip: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["zip"]>, clothSelection: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["clothSelection"]>, country: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["country"]>, lastName: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["lastName"]>, pickUpCountry: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["pickUpCountry"]>, city: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["city"]>, wCountries: any, countries: any, clothes: any, firstName: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["firstName"]>, street: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["street"]>, isTouched: boolean, email: UnwrapRef<_ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>["email"]>}}
+   */
   data() {
     return {
-      isTouched: false,
       clothSelection: this.store.clothSelection,
       clothes: this.store.clothes,
       country: this.store.country,
@@ -157,6 +175,10 @@ export default {
     };
   },
   computed: {
+    /**
+     * computed styles for vSelect for validation
+     * @returns {string}
+     */
     vSelectStyle() {
       return this.v$.clothSelection.$error
         ? "--vs-border-color: rgb(239 68 68 / 1)"
@@ -164,9 +186,14 @@ export default {
     },
   },
   methods: {
+    /**
+     * validates form
+     * updates the store
+     * routes to success View
+     * @returns {Promise<void>}
+     */
     async routeToSuccess() {
       const isFormCorrect = await this.v$.$validate();
-      // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
       if (!isFormCorrect) return;
 
       this.store.$patch({
@@ -183,6 +210,10 @@ export default {
       this.$router.push("/success");
     },
   },
+  /**
+   * vuelidate validations
+   * @returns {{zip: {checkIfInRange: (function(*): boolean), required: ValidationRuleWithoutParams}, firstName: {required: ValidationRuleWithoutParams}, lastName: {required: ValidationRuleWithoutParams}, country: {valueNotZero: (function(*): boolean), required: ValidationRuleWithoutParams}, clothSelection: {required: ValidationRuleWithoutParams}, city: {required: ValidationRuleWithoutParams}, pickUpCountry: {valueNotZero: (function(*): boolean), required: ValidationRuleWithoutParams}, street: {required: ValidationRuleWithoutParams}, email: {required: ValidationRuleWithoutParams, email: ValidationRuleWithoutParams}}}
+   **/
   validations() {
     return {
       firstName: { required },
@@ -196,8 +227,6 @@ export default {
       clothSelection: { required },
     };
   },
-  name: "PickUpService",
-  components: { vSelect, LabelInput, CountrySelect },
 };
 </script>
 

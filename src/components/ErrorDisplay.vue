@@ -18,7 +18,13 @@
 
 <script>
 export default {
+  /**
+   * component name
+   */
   name: "ErrorDisplay",
+  /**
+   * component props
+   */
   props: {
     v: {
       type: Object,

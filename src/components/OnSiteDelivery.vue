@@ -63,12 +63,26 @@ import { required } from "@vuelidate/validators";
 import { valueNotZero } from "@/helpers/validation";
 
 export default {
+  /**
+   * used components
+   */
   components: { vSelect, CountrySelect },
+  /**
+   * sets up store and validations
+   * @returns {{store: *, v$: <Validation>}}
+   */
   setup() {
     const store = useFormStore();
     return { store, v$: useVuelidate() };
   },
+  /**
+   * component name
+   */
   name: "OnSiteDelivery",
+  /**
+   * initialize data from store
+   * @returns {{clothSelection: any, country: any, clothes: any}}
+   */
   data() {
     return {
       clothSelection: this.store.clothSelection,
@@ -77,6 +91,10 @@ export default {
     };
   },
   computed: {
+    /**
+     * style for multiselect component
+     * @returns {string}
+     */
     vSelectStyle() {
       return this.v$.clothSelection.$error
         ? "--vs-border-color: rgb(239 68 68 / 1)"
@@ -84,6 +102,12 @@ export default {
     },
   },
   methods: {
+    /**
+     * checks validation
+     * updates the store
+     * route to success view
+     * @returns {Promise<void>}
+     */
     async routeToSuccess() {
       const isFormCorrect = await this.v$.$validate();
       // you can show some extra alert to the user or just leave the each field to show it's `$errors`.

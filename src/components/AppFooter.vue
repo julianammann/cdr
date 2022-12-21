@@ -21,8 +21,16 @@
 </template>
 
 <script setup>
+/**
+ * year function to get the current year
+ * @type {number}
+ */
 const year = new Date().getFullYear();
 
+/**
+ * returns links for navigation
+ * @type {[{name: string, href: string},{name: string, href: string}]}
+ */
 const navigation = [
   { name: "Impressum", href: "/imprint" },
   { name: "Datenschutz", href: "/data-protection" },

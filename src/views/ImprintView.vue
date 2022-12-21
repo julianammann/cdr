@@ -16,6 +16,10 @@
 <script setup>
 import DataTable from "@/components/DataTable.vue";
 
+/**
+ * data fot data table
+ * @type {{address: {values: {street: string, name: string, zip_n_city: string}, title: string}, contacts: {values: {mail: string, phone: string}, title: string}}}
+ */
 const items = {
   address: {
     title: "Adresse",

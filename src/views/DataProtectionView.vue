@@ -16,6 +16,10 @@
 <script setup>
 import DataTable from "@/components/DataTable.vue";
 
+/**
+ * initialize data for data table
+ * @type {{point_4: {values: {p1_1: string, p1: string, p2: string, p3: string, p1_5: string, p1_4: string, p3_2: string, p1_3: string, l2: string, p2_2: string, p3_1: string, p1_2: string, p2_1: string, h1: string, h2: string, h3: string}, title: string}, point_3: {values: {p1_1: string, p1: string, p2: string, p12_1: string, p3: string, p11_1: string, p4: string, p2_3: string, p5: string, p2_2: string, p6: string, h10: string, p1_2: string, p2_1: string, p7: string, p8: string, h12: string, h1: string, p9: string, h11: string, h2: string, p7_1: string, h3: string, h13: string, h4: string, h5: string, l11: string, h6: string, p10: string, h7: string, h8: string, p12: string, h9: string, p11: string, p13: string}, title: string}, point_2: {values: {p1_1: string, p1: string, p2: string, p1_3: string, p1_2: string, h1: string, h2: string}, title: string}, point_1: {values: {p1: string, p2: string, p3: string, p4: string, p4_1: string, p2_1: string, h1: string, h2: string, h3: string, h4: string}, title: string}, point_0: {values: {info: string}, title: string}}}
+ */
 const items = {
   point_0: {
     title: "1. Datenschutz auf einen Blick",

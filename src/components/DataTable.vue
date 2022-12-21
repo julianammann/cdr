@@ -25,7 +25,13 @@
 import DataTableItem from "@/components/DataTableItem.vue";
 
 export default {
+  /**
+   * used components
+   */
   components: { DataTableItem },
+  /**
+   * component props
+   */
   props: {
     items: Object,
   },

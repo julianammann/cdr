@@ -21,8 +21,17 @@
 import ErrorDisplay from "@/components/ErrorDisplay.vue";
 
 export default {
+  /**
+   * component name
+   */
   name: "LabelInput",
+  /**
+   * used components
+   */
   components: { ErrorDisplay },
+  /**
+   * props for component
+   */
   props: {
     v: {
       type: Object,

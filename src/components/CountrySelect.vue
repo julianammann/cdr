@@ -31,8 +31,17 @@
 import ErrorDisplay from "@/components/ErrorDisplay.vue";
 
 export default {
+  /**
+   * component name
+   */
   name: "CountrySelect",
+  /**
+   * used components
+   */
   components: { ErrorDisplay },
+  /**
+   * component props
+   */
   props: {
     modelValue: String,
     countries: Object,

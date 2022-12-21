@@ -72,11 +72,18 @@ import FormSpacer from "@/components/FormSpacer.vue";
 import OnSiteDelivery from "@/components/OnSiteDelivery.vue";
 
 export default {
+  /**
+   * setup store
+   * @returns {{store: *}}
+   */
   setup() {
     const store = useFormStore();
     return { store };
   },
   name: "ClothingDonation",
+  /**
+   * used components
+   */
   components: { OnSiteDelivery, FormSpacer, PickUpService },
 };
 </script>

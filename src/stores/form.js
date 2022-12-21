@@ -1,6 +1,10 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
+/**
+ * defines store with inital values
+ * @type {StoreDefinition<"form", _ExtractStateFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>, _ExtractGettersFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>, _ExtractActionsFromSetupStore<{zip: Ref<UnwrapRef<string>>, clothSelection: Ref<UnwrapRef<[]>>, country: Ref<UnwrapRef<string>>, lastName: Ref<UnwrapRef<string>>, worldCountries: *, pickUpCountry: Ref<UnwrapRef<string>>, city: Ref<UnwrapRef<string>>, countries: *, clothes: *, firstName: Ref<UnwrapRef<string>>, changeChecked: function(*): void, street: Ref<UnwrapRef<string>>, checked: Ref<UnwrapRef<string>>, email: Ref<UnwrapRef<string>>}>>}
+ */
 export const useFormStore = defineStore("form", () => {
   const checked = ref("pickUpService");
   const clothSelection = ref([]);

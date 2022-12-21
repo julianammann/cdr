@@ -14,6 +14,9 @@
 
 <script>
 export default {
+  /**
+   * component props
+   */
   props: {
     values: Object,
     title: String,

@@ -8,6 +8,9 @@
 
 <script>
 export default {
+  /**
+   * component name
+   */
   name: "FormSpacer",
 };
 </script>

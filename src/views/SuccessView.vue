@@ -47,10 +47,18 @@
 import { useFormStore } from "@/stores/form";
 
 export default {
+  /**
+   * setup store
+   * @returns {{store: *}}
+   */
   setup() {
     const store = useFormStore();
     return { store };
   },
+  /**
+   * initialize data from store
+   * @returns {{zip: *, clothSelection: *, country: *, firstName: *, lastName: *, pickUpCountry: *, city: *, street: (string|*), wCountries: Ref<UnwrapRef<[{code: string, name: string},{code: string, name: string},{code: string, name: string},{code: string, name: string},{code: string, name: string},null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]>>, checked: *, countries: *, email: *}}
+   */
   data() {
     return {
       checked: this.store.checked,
@@ -68,10 +76,20 @@ export default {
     };
   },
   methods: {
+    /**
+     * getCountryByCode filters the countries after the selected one
+     * @returns {String}
+     */
     getCountryByCode() {
       const result = this.countries.filter((c) => c.code === this.country);
       return result[0].name;
     },
+    /**
+     * add Days is a helper function to fake pick up date
+     * @param date
+     * @param days
+     * @returns {string}
+     */
     addDays(date, days) {
       let result = new Date(date);
       result.setDate(result.getDate() + days);
