@@ -10,10 +10,15 @@
           </h3>
           <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
             diese umfasst:
-            <span :key="index" v-for="(cloth, index) in clothSelection">{{
-              cloth
-            }}</span>
+            <span :key="index" v-for="(cloth, index) in clothSelection"
+              >{{ cloth
+              }}<span v-if="index + 1 < clothSelection.length"
+                >,&nbsp;</span
+              ></span
+            >
             <br />
+            {{ new Date().toLocaleDateString("de-DE") }}
+            {{ new Date().toLocaleTimeString("de-DE") }}
           </p>
         </div>
       </div>
@@ -26,9 +31,12 @@
         </h3>
         <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
           diese umfasst:
-          <span :key="index" v-for="(cloth, index) in clothSelection">{{
-            cloth
-          }}</span>
+          <span :key="index" v-for="(cloth, index) in clothSelection"
+            >{{ cloth
+            }}<span v-if="index + 1 < clothSelection.length"
+              >,&nbsp;</span
+            ></span
+          >
           <br />
           Wir kommen zur folgenden Adresse: <br />
           {{ street }}<br />

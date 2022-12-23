@@ -6,7 +6,7 @@
     <main class="relative bg-white shadow h-screen overflow-auto">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 my-20">
         <!-- Replace with your content -->
-        <div class="px-4 sm:px-0">
+        <div id="container" class="px-4 sm:px-0">
           <RouterView />
         </div>
         <!-- /End replace -->
